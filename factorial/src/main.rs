@@ -20,7 +20,7 @@ fn main() {
 
     let res: BigUint = factorial(num);
 
-    println!("The factorial of {} is {}", num, humanize::big_int(&res));
+    // println!("The factorial of {} is {}", num, humanize::big_int(&res));
 
     println!(
         "The factorial of {} is {}",
