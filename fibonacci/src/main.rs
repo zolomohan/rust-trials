@@ -1,3 +1,5 @@
+use num_bigint::BigUint;
+
 fn get_number_from_io(prompt: &str) -> i32 {
     println!("{}", prompt);
 
@@ -18,16 +20,16 @@ fn get_number_from_io(prompt: &str) -> i32 {
 fn main() {
     let num = get_number_from_io("Enter Number to Generate Fibonacci Serires: ");
 
-    let mut first = 0;
-    let mut second = 1;
+    let mut first = BigUint::new(vec![0]);
+    let mut second = BigUint::new(vec![1]);
 
     print!("{} {} ", first, second);
 
     for _ in 0..num - 2 {
-        let output = first + second;
+        let output = &first + &second;
+        print!("{} ", output);
+
         first = second;
         second = output;
-
-        print!("{} ", output);
     }
 }
