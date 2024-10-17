@@ -1,4 +1,6 @@
 mod humanize;
+
+use humanize::big_int_eff::big_int_eff;
 use num_bigint::BigUint;
 
 fn factorial(num: usize) -> BigUint {
@@ -22,9 +24,5 @@ fn main() {
 
     // println!("The factorial of {} is {}", num, humanize::big_int(&res));
 
-    println!(
-        "The factorial of {} is {}",
-        num,
-        humanize::big_int_eff(&res)
-    );
+    println!("The factorial of {} is {}", num, big_int_eff(&res));
 }
