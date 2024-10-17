@@ -1,7 +1,12 @@
 use num_bigint::BigUint;
+use num_traits::ToPrimitive;
 
-pub fn number(number: &usize) -> String {
-    let number_string = number.to_string();
+pub fn number<T: ToPrimitive>(number: &T) -> String {
+    let number_string = number
+        .to_usize()
+        .expect("Something went wront during parsing the result")
+        .to_string();
+
     let mut humanized_string = String::new();
 
     for (i, c) in number_string.chars().rev().enumerate() {
