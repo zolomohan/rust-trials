@@ -1,11 +1,14 @@
 mod humanize;
+use num_bigint::BigUint;
 
-fn factorial(number: usize) -> usize {
-    if number == 1 {
-        return 1;
+fn factorial_bigint(number: usize) -> BigUint {
+    let mut result: BigUint = BigUint::new(vec![1]);
+
+    for n in 0..number {
+        result = result * (number - n);
     }
 
-    return number * factorial(number - 1);
+    return result;
 }
 
 fn main() {
@@ -21,11 +24,11 @@ fn main() {
         .parse::<usize>()
         .expect("Something went wrong during parsing input.");
 
-    let result: usize = factorial(number);
+    let result: BigUint = factorial_bigint(number);
 
     println!(
         "The factorial of {} is {}",
         number,
-        humanize::number(&result)
+        humanize::big_int(&result)
     );
 }
