@@ -2,13 +2,7 @@ mod humanize;
 use num_bigint::BigUint;
 
 fn factorial_bigint(num: usize) -> BigUint {
-    let mut res: BigUint = BigUint::new(vec![1]);
-
-    for i in 0..num {
-        res = res * (num - i);
-    }
-
-    return res;
+    (1..num + 1).fold(BigUint::new(vec![1]), |acc, el| acc * el)
 }
 
 fn main() {
