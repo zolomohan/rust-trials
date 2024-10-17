@@ -1,9 +1,17 @@
-fn factorial(number: u64) -> u64 {
+fn factorial(number: usize) -> usize {
     if number == 1 {
         return 1;
     }
 
     return number * factorial(number - 1);
+}
+
+fn humanize(&number: &usize) -> String {
+    let number_string = number.to_string();
+
+    println!("{:#?}", number_string.chars().into_iter());
+
+    return number_string;
 }
 
 fn main() {
@@ -14,10 +22,13 @@ fn main() {
         .read_line(&mut user_input)
         .expect("Something went wrong during input.");
 
-    let number: u64 = user_input
+    let number: usize = user_input
         .trim()
-        .parse::<u64>()
+        .parse::<usize>()
         .expect("Something went wrong during parsing input.");
 
-    println!("The factorial of {} is {}", number, factorial(number));
+    let result: usize = factorial(number);
+
+    println!("The factorial of {} is {}", number, result);
+    println!("The factorial of {} is {}", number, humanize(&result));
 }
