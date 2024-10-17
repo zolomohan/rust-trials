@@ -1,34 +1,47 @@
+use std::cmp::Ordering;
+
 use rand::{thread_rng, Rng};
 
-fn prompt_and_check(&num_to_guess: &i32) {
-    println!("Enter your guess:");
+fn get_number_from_io(prompt: &str) -> i32 {
+    println!("{}", prompt);
 
-    let mut user_guess = String::from("");
+    let mut text = String::from("");
 
     std::io::stdin()
-        .read_line(&mut user_guess)
+        .read_line(&mut text)
         .expect("Something went wrong during I/O.");
 
-    let user_guess_num: i32 = user_guess
+    let num: i32 = text
         .trim()
         .parse::<i32>()
         .expect("Something went wrong durung parsing I/O.");
 
-    if (user_guess_num == num_to_guess) {
-        println!("You guessed it correct!");
-        return ();
-    } else if (user_guess_num < num_to_guess) {
-        println!("Your guess is lower than the number.");
-    } else {
-        println!("Your guess is higher than the number.");
-    }
-
-    prompt_and_check(&num_to_guess);
+    return num;
 }
 
 fn main() {
-    let mut rng = thread_rng();
-    let num_to_guess: i32 = rng.gen_range(1..101);
+    let num_to_guess: i32 = thread_rng().gen_range(1..101);
+    let mut correct = false;
+    let mut no_of_guesses = 0;
 
-    prompt_and_check(&num_to_guess);
+    while !correct {
+        let user_guess = get_number_from_io("Guess the Number: ");
+        no_of_guesses += 1;
+
+        match (num_to_guess - user_guess).abs() {
+            0 => println!("Correct!"),
+            1..10 => println!("Almost there!"),
+            10..20 => println!("Pretty close!"),
+            _ => println!("You're way off!"),
+        }
+
+        match user_guess.cmp(&num_to_guess) {
+            Ordering::Less => println!("You're guess is lower :("),
+            Ordering::Greater => println!("You're guess is higher :("),
+            Ordering::Equal => {
+                println!("You guessed the number in {} tries!", no_of_guesses);
+                correct = true;
+            }
+        }
+    }
 }
