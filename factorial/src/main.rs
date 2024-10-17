@@ -1,17 +1,11 @@
+mod humanize;
+
 fn factorial(number: usize) -> usize {
     if number == 1 {
         return 1;
     }
 
     return number * factorial(number - 1);
-}
-
-fn humanize(&number: &usize) -> String {
-    let number_string = number.to_string();
-
-    println!("{:#?}", number_string.chars().into_iter());
-
-    return number_string;
 }
 
 fn main() {
@@ -29,6 +23,9 @@ fn main() {
 
     let result: usize = factorial(number);
 
-    println!("The factorial of {} is {}", number, result);
-    println!("The factorial of {} is {}", number, humanize(&result));
+    println!(
+        "The factorial of {} is {}",
+        number,
+        humanize::number(&result)
+    );
 }
