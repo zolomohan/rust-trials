@@ -37,22 +37,21 @@ pub fn _big_int(number: &BigUint) -> String {
 
 pub fn big_int_eff(number: &BigUint) -> String {
     let mut number_string = number.to_string();
-
-    let mut next_comma_index = number_string.len() % 3;
+    let mut next_comma_position = number_string.len() % 3;
 
     for _i in 0..number_string.len() / 3 {
-        if next_comma_index == 0 {
-            next_comma_index = next_comma_index + 3;
+        if next_comma_position == 0 {
+            next_comma_position = next_comma_position + 3;
             continue;
         }
 
         number_string = format!(
             "{},{}",
-            &number_string[0..next_comma_index],
-            &number_string[next_comma_index..number_string.len()]
+            &number_string[0..next_comma_position],
+            &number_string[next_comma_position..number_string.len()]
         );
 
-        next_comma_index = next_comma_index + 4;
+        next_comma_position = next_comma_position + 4;
     }
 
     return number_string;
