@@ -1,7 +1,7 @@
 mod humanize;
 use num_bigint::BigUint;
 
-fn factorial_bigint(num: usize) -> BigUint {
+fn factorial(num: usize) -> BigUint {
     (1..num + 1).fold(BigUint::new(vec![1]), |acc, el| acc * el)
 }
 
@@ -18,7 +18,13 @@ fn main() {
         .parse::<usize>()
         .expect("Something went wrong during parsing input.");
 
-    let res: BigUint = factorial_bigint(num);
+    let res: BigUint = factorial(num);
 
     println!("The factorial of {} is {}", num, humanize::big_int(&res));
+
+    println!(
+        "The factorial of {} is {}",
+        num,
+        humanize::big_int_eff(&res)
+    );
 }
