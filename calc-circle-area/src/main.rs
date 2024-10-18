@@ -66,14 +66,17 @@ fn main() {
             let area: f64 = get_number_from_io("Enter Area: ");
             println!("{:#?}", Circle::new_with_area(area));
         }
+
         2.0 => {
             let radius: f64 = get_number_from_io("Enter Radius: ");
             println!("{:#?}", Circle::new_with_radius(radius));
         }
+
         3.0 => {
             let diameter: f64 = get_number_from_io("Enter Diameter: ");
             println!("{:#?}", Circle::new_with_diameter(diameter));
         }
+
         _ => {
             println!("Not a valid option :(");
         }
