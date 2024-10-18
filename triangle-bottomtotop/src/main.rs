@@ -21,7 +21,7 @@ fn main() {
     for i in 0..num {
         println!(
             "{}",
-            (0..(num - i)).fold(String::new(), |acc, el| format!("{acc}*"))
+            (0..(num - i)).fold(String::new(), |acc, _| format!("{acc}*"))
         );
     }
 }
