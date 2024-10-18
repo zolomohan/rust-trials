@@ -1,10 +1,10 @@
-fn reverse_print_string(text: &str) {
-    let last_character = text.chars().last();
+fn reverse_print_string(input: &str, output: &mut String) {
+    let last_character = input.chars().last();
 
     match last_character {
         Some(c) => {
-            println!("{:?}", c);
-            reverse_print_string(&text[0..text.len() - 1]);
+            output.push(c);
+            reverse_print_string(&input[0..input.len() - 1], output);
         }
 
         None => {
@@ -14,11 +14,14 @@ fn reverse_print_string(text: &str) {
 }
 
 fn main() {
-    let mut text = String::new();
+    let mut input = String::new();
 
     std::io::stdin()
-        .read_line(&mut text)
+        .read_line(&mut input)
         .expect("Something went wrong during I/O.");
 
-    reverse_print_string(&text.trim());
+    let mut output = String::new();
+    reverse_print_string(&input.trim(), &mut output);
+
+    println!("{}", output);
 }
