@@ -20,7 +20,7 @@ use num_traits::ToPrimitive;
 /// let result = _number(&num);
 /// assert_eq!(result, "123,456,789");
 /// ```
-pub fn number<T: ToPrimitive>(number: &T) -> String {
+pub fn _number<T: ToPrimitive>(number: &T) -> String {
     // Convert the input number to a usize (unsigned size type) and handle any errors during conversion
     let number_string = number
         .to_usize() // Convert the number to a usize type

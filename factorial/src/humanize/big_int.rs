@@ -16,7 +16,7 @@ use num_bigint::BigUint;
 /// let result = _big_int(&big_num);
 /// assert_eq!(result, "123,456,789,123,456,789");
 /// ```
-pub fn big_int(number: &BigUint) -> String {
+pub fn _big_int(number: &BigUint) -> String {
     // Convert the BigUint to a string
     let number_string = number.to_string();
 
