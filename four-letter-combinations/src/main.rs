@@ -9,14 +9,13 @@ fn permutations(word: String) -> Vec<String> {
 
     let mut all_permutations = vec![];
 
-    for (i, c) in word.chars().enumerate() {
-        let sub_permutations: Vec<String> =
+    for (i, current_char) in word.chars().enumerate() {
+        all_permutations.extend(
             permutations(format!("{}{}", &word[0..i], &word[(i + 1)..]))
                 .iter()
-                .map(|sub_word| format!("{}{}", c, sub_word))
-                .collect();
-
-        all_permutations.extend(sub_permutations);
+                .map(|sub_word| format!("{}{}", current_char, sub_word))
+                .collect::<Vec<String>>(),
+        );
     }
 
     return all_permutations;
